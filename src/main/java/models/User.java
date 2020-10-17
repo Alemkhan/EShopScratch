@@ -11,6 +11,12 @@ public class User {
         this.password = password;
     }
 
+    public User(String fname, String lname, String login) {
+        this.fname = fname;
+        this.lname = lname;
+        this.login = login;
+    }
+
     public User(String fname, String lname, String login, String password) {
         this.fname = fname;
         this.lname = lname;

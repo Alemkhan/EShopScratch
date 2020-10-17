@@ -12,6 +12,11 @@
 </head>
 <%@ include file="components/header.jsp"%>
 <div class="container-fluid" style="padding: 25px;">
+    <%
+        if (cc.isSet(myCookies)) {
+            response.sendRedirect("JSPages/main-page.jsp");
+        }
+    %>
     <h1>Register</h1>
     <form class="col-6" action="<%=request.getContextPath()%>/register" method="post">
         <div class="form-group">

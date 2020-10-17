@@ -1,4 +1,5 @@
-<%@ page import="models.PasswordValidator" %><%--
+<%@ page import="models.PasswordValidator" %>
+<%--
   Created by IntelliJ IDEA.
   User: alemh
   Date: 14.10.2020
@@ -13,6 +14,11 @@
 <%@ include file="components/header.jsp"%>
 <!--Main Layout-->
 <div class="container-fluid" style="padding: 25px;">
+    <%
+        if (cc.isSet(myCookies)) {
+            response.sendRedirect("JSPages/main-page.jsp");
+        }
+    %>
     <h1>Login</h1>
     <form action="<%=request.getContextPath()%>/login" method="post" class="col-6">
         <div class="form-group">
@@ -34,6 +40,5 @@
     </p>
     <a href="JSPages/register.jsp">You are not registered?</a>
 </div>
-</body>
 <%@ include file="components/footer.jsp"%>
 </html>

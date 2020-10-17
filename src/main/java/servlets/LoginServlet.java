@@ -7,11 +7,11 @@ import models.UserManager;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
-import java.lang.reflect.Field;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
@@ -37,8 +37,15 @@ public class LoginServlet extends HttpServlet {
         if(pv.validateLoginForm(login, pass).equals("success")) {
             User loginUser = new User(login, pass);
             UserManager userLogger = new UserManager(loginUser);
-            if (userLogger.loginUser(file, loginUser.getLogin(), loginUser.getPassword(), userLogger.countLines(file))) {
+            if ((loginUser = userLogger.loginUser(file, loginUser.getLogin(), loginUser.getPassword(), userLogger.countLines(file))) != null) {
                 System.out.println("USER LOGGED IN");
+                Cookie cookieFName = new Cookie("Fname", loginUser.getFname());
+                Cookie cookieLName = new Cookie("Lname", loginUser.getLname());
+                cookieFName.setMaxAge(60*30);
+                cookieLName.setMaxAge(60*30);
+                response.addCookie(cookieFName);
+                response.addCookie(cookieLName);
+                response.sendRedirect("JSPages/main-page.jsp");
             } else {
                 System.out.println("NOT CORRECT");
                 response.sendRedirect("JSPages/index.jsp?error=2");

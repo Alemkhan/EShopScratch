@@ -1,5 +1,6 @@
 package models;
 
+import javax.ws.rs.core.Cookie;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -27,7 +28,7 @@ public class UserManager {
         newUser.close();
     }
 
-    public boolean loginUser(File file, String login, String password, int lines) {
+    public User loginUser(File file, String login, String password, int lines) {
         try {
             RandomAccessFile loginUser = new RandomAccessFile(file+"\\logins.txt", "rw");
             for (int i = 0; i < lines-2; i+=4) {
@@ -35,12 +36,11 @@ public class UserManager {
                 String userPassword = loginUser.readLine().substring(9);
                 if (login.equals(userLogin) && password.equals(userPassword)) {
                     System.out.println("OK");
-                    loginUser.close();
-                    return true;
-                } else if (login.equals(userLogin) && !password.equals(userPassword)) {
+                    return new User(loginUser.readLine().substring(11), loginUser.readLine().substring(10),userLogin);
+                } else if (login.equals(userLogin)) {
                     System.out.println("GG");
                     loginUser.close();
-                    return false;
+                    return null;
                 } else {
                     for (int j = 0; j < 3; j++) {
                         loginUser.readLine();
@@ -52,7 +52,7 @@ public class UserManager {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return false;
+        return null;
     }
 
     public int countLines(File file) {
