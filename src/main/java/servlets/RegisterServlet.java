@@ -15,7 +15,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 
-@WebServlet("/registerServlet")
+@WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
 
     static String ROOT_DIRECTORY;
@@ -37,11 +37,14 @@ public class RegisterServlet extends HttpServlet {
             UserManager um = new UserManager(myUser);
             FileManager fm = new FileManager(file);
             try {
-                um.registerUser(file);
+                int lines = um.countLines(file);
+                um.registerUser(file, lines);
             } catch (FileNotFoundException e) {
                 fm.checkAndCreateFileIfDNE();
                 fm.readOrWriteInTxt();
-                um.registerUser(file);
+                um.registerUser(file,um.countLines(file));
+            } finally {
+                response.sendRedirect("JSPages/index.jsp");
             }
         }
     }

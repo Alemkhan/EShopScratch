@@ -2,6 +2,8 @@ package servlets;
 
 import models.FileManager;
 import models.PasswordValidator;
+import models.User;
+import models.UserManager;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -33,6 +35,17 @@ public class LoginServlet extends HttpServlet {
         String pass = request.getParameter("pass");
         PasswordValidator pv = new PasswordValidator();
         if(pv.validateLoginForm(login, pass).equals("success")) {
+            User loginUser = new User(login, pass);
+            UserManager userLogger = new UserManager(loginUser);
+            if (userLogger.loginUser(file, loginUser.getLogin(), loginUser.getPassword(), userLogger.countLines(file))) {
+                System.out.println("USER LOGGED IN");
+            } else {
+                System.out.println("NOT CORRECT");
+                response.sendRedirect("JSPages/index.jsp?error=2");
+            }
+
+        } else {
+            response.sendRedirect("JSPages/index.jsp?error=1");
         }
     }
 

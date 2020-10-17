@@ -1,5 +1,7 @@
 package models;
 
+import javax.servlet.http.HttpServletRequest;
+
 public class PasswordValidator {
 
     public String validateLoginForm(String login, String password) {
@@ -15,5 +17,16 @@ public class PasswordValidator {
         } else {
             return "Fill the fields";
         }
+    }
+
+    public String showErrorMessage(String error) {
+        if (error == null) {
+            return "";
+        } else if (error.equals("2")) {
+            return "The password or login is incorrect";
+        } else if (error.equals("1")){
+            return "There is no enough data to login";
+        }
+        return "";
     }
 }

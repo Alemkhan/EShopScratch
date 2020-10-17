@@ -27,9 +27,11 @@ public class FileManager {
         try {
             FileReader fr = new FileReader(file + "\\logins.txt");
             System.out.println("File exists");
+            fr.close();
         } catch (FileNotFoundException e ) {
             FileWriter fw = new FileWriter(file + "\\logins.txt");
             System.out.println("File created");
+            fw.close();
         }
     }
 }
