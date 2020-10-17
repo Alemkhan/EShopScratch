@@ -11,13 +11,20 @@
     <title>Some Product</title>
 </head>
 <%@ include file="components/header.jsp"%>
+<%
+    if(!cc.isSet(myCookies)) {
+        response.sendRedirect("index.jsp");
+    }
+%>
 <div class="container-fluid" style="padding: 25px;">
-
-    <%
-            for (Cookie cook: myCookies) {
-        %><h3><%if (cook.getName().equals("Fname") || cook.getName().equals("Lname")){out.println(cook.getValue());}%></h3><%;
-            }
-        %>
+    <div style="display:flex;">
+        Hello,
+        <c:forEach var="cook" items="${myCookies}">
+            <c:if test="${cook.getName().equals('Fname') || cook.getName().equals('Lname')}">
+                <c:out value="${cook.getValue()}"/>
+            </c:if>
+        </c:forEach>
+    </div>
 </div>
 <%@ include file="components/footer.jsp"%>
 </html>

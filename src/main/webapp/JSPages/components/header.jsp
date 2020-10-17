@@ -34,6 +34,7 @@
         </div>
         <%
             Cookie[] myCookies = request.getCookies();
+            request.setAttribute("myCookies", myCookies);
             CookieManager cc = new CookieManager();
             if(cc.isSet(myCookies)) {
         %>
