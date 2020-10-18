@@ -38,7 +38,7 @@
             out.println(pv.showErrorMessage(request.getParameter("error")));
         %>
     </p>
-    <a href="JSPages/register.jsp">You are not registered?</a>
+    <a href="register.jsp">You are not registered?</a>
 </div>
 <%@ include file="components/footer.jsp"%>
 </html>

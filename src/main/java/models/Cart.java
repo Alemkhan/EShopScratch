@@ -1,8 +1,11 @@
 package models;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
-public class Cart extends Product{
+public class Cart extends Product implements Payable{
 
     private ArrayList<Product> productList;
 
@@ -20,5 +23,10 @@ public class Cart extends Product{
 
     public void setProductList(ArrayList<Product> productList) {
         this.productList = productList;
+    }
+
+    @Override
+    public int showPayment() {
+        return productList.stream().mapToInt(x -> (int) x.getPrice()).sum();
     }
 }

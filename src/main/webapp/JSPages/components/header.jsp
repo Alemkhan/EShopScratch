@@ -1,4 +1,5 @@
 <%@ page import="models.CookieManager" %>
+<%@ page import="models.Cart" %>
 <%--
   Created by IntelliJ IDEA.
   User: alemh
@@ -14,6 +15,17 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
     <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <body>
+
+<!--Visit Counter Implementation-->
+<%
+    Integer visitsCount = (Integer) application.getAttribute("visitCounter");
+    if (visitsCount == null||visitsCount==0) {
+        visitsCount = 1;
+    } else {
+        visitsCount++;
+    }
+    application.setAttribute("visitCounter", visitsCount);
+%>
 <!--Main Navigation-->
 <header>
 
@@ -33,14 +45,18 @@
             </ul>
         </div>
         <%
+            Cart myCart = (Cart) session.getAttribute("myCart");
             Cookie[] myCookies = request.getCookies();
             request.setAttribute("myCookies", myCookies);
             CookieManager cc = new CookieManager();
             if(cc.isSet(myCookies)) {
         %>
-        <form action="<%=request.getContextPath()%>/logout">
+        <a href="cart.jsp" class="mr-3">
+            <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Pay</button>
+        </a>
+        <a href="<%=request.getContextPath()%>/logout">
             <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Logout</button>
-        </form> <%
+        </a><%
         }
     %>
     </nav>

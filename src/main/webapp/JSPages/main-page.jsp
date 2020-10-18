@@ -1,8 +1,7 @@
 <%@ page import="models.Product" %>
 <%@ page import="java.util.Set" %>
 <%@ page import="java.util.HashSet" %>
-<%@ page import="java.util.HashMap" %>
-<%@ page import="models.Cart" %><%--
+<%@ page import="java.util.HashMap" %><%--
   Created by IntelliJ IDEA.
   User: alemh
   Date: 17.10.2020
@@ -80,25 +79,19 @@
             <div class="col-12 d-flex">
                 <c:forEach var="prod" items="${products.get(toShow)}">
                     <form action="<%=request.getContextPath()%>/addToCart" method="post" style="width: 250px;" class="card mr-3">
-                        <div class="card-body">
-                            <b><p class="card-title">Product Name: <br> <c:out value="${prod.getName()}"/></p></b>
-                            <i><p class="card-text">Product Price: <br><c:out value="${prod.getPrice()}"/>KZT</p></i>
-                            <button type="submit" class="btn btn-primary">Add to Cart</button>
-                            <input type="hidden" name="myProductName" value="${prod.getName()}">
-                            <input type="hidden" name="myProductPrice" value="${prod.getPrice()}">
+                        <div class="card">
+                            <div class="card-body ">
+                                <b><p class="card-title">Product Name: <br> <c:out value="${prod.getName()}"/></p></b>
+                                <i><p class="card-text">Product Price: <br><c:out value="${prod.getPrice()}"/>KZT</p></i>
+                                <button type="submit" class="btn btn-primary">Add to Cart</button>
+                                <input type="hidden" name="myProductName" value="${prod.getName()}">
+                                <input type="hidden" name="myProductPrice" value="${prod.getPrice()}">
+                            </div>
                         </div>
                     </form>
                 </c:forEach>
             </div>
         </c:if>
-    </div>
-    <div>
-        <%
-            Cart myCart = (Cart) session.getAttribute("myCart");
-        %>
-        <c:forEach var="prod" items="${myCart.getProductList()}">
-            <c:out value="${prod.getName()}"/>
-        </c:forEach>
     </div>
 </div>
 <%@ include file="components/footer.jsp"%>
