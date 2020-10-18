@@ -5,6 +5,7 @@
       <map>
         <entry key="file://$PROJECT_DIR$/src/main/webapp/JSPages/components/header.jsp" value="file://$PROJECT_DIR$/src/main/webapp/JSPages/components" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/JSPages/index.jsp" value="file://$PROJECT_DIR$/src/main/webapp/JSPages" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/JSPages/main-page.jsp" value="file://$PROJECT_DIR$/src/main/webapp/JSPages" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/JSPages/register.jsp" value="file://$PROJECT_DIR$/src/main/webapp/JSPages" />
       </map>
     </option>
