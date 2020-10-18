@@ -18,7 +18,7 @@
 <header>
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a class="navbar-brand" href="#">Boys of the GYM</a>
+        <a class="navbar-brand" href="main-page.jsp">Boys of the GYM</a>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item active">

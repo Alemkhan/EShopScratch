@@ -2,7 +2,7 @@ package models;
 
 import java.util.ArrayList;
 
-public class Cart extends Product {
+public class Cart extends Product{
 
     private ArrayList<Product> productList;
 
