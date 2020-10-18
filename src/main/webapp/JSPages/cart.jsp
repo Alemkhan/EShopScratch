@@ -22,6 +22,9 @@
     <div class="border border-primary p-4 rounded-bottom">
         <h3>Some Info</h3>
         <%
+            //Extracting data of user
+
+            //Look in header.jsp
             String visits = "Total Number of Visits: " + visitsCount;
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
             LocalDateTime now = LocalDateTime.now();

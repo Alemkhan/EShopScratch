@@ -20,6 +20,7 @@
     }
 %>
 <%
+    //Static database of product using HashMap and HashSet
     HashMap<String, Set<Product>> categories = new HashMap();
 
     HashSet<Product> sportProducts = new HashSet();

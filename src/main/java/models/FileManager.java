@@ -17,12 +17,14 @@ public class FileManager {
         this.file = file;
     }
 
+    //Registration part of creating a folder
     public void checkAndCreateFileIfDNE() {
         if (!file.exists()) {
             file.mkdirs();
         }
     }
 
+    //Registration part of creating a txt file
     public void readOrWriteInTxt() throws IOException {
         try {
             FileReader fr = new FileReader(file + "\\logins.txt");

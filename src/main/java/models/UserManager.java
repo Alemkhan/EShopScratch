@@ -1,11 +1,10 @@
 package models;
 
-import javax.ws.rs.core.Cookie;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 
+//Most of the logic is here but it connected with registration
 public class UserManager {
 
     private User user;
@@ -14,6 +13,7 @@ public class UserManager {
         this.user = user;
     }
 
+    //Registration based on file writing
     public void registerUser(File file, int linesToSkip) throws IOException {
         RandomAccessFile newUser = new RandomAccessFile(file+"\\logins.txt", "rw");
         for (int i = 0; i < linesToSkip; i++) {
@@ -28,6 +28,7 @@ public class UserManager {
         newUser.close();
     }
 
+    //Login is based on reading from a file
     public User loginUser(File file, String login, String password, int lines) {
         try {
             RandomAccessFile loginUser = new RandomAccessFile(file+"\\logins.txt", "rw");
@@ -55,6 +56,7 @@ public class UserManager {
         return null;
     }
 
+    //countLines method helps to navigate through the txt document
     public int countLines(File file) {
         try {
             int ln = 1;

@@ -18,6 +18,7 @@
 
 <!--Visit Counter Implementation-->
 <%
+    //Count visit throughout the application
     Integer visitsCount = (Integer) application.getAttribute("visitCounter");
     if (visitsCount == null||visitsCount==0) {
         visitsCount = 1;

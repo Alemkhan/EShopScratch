@@ -14,11 +14,16 @@ import java.io.IOException;
 @WebServlet("/addToCart")
 public class CartServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //The session of the cart is created here
         HttpSession session = request.getSession();
+
         String name = request.getParameter("myProductName");
         float price = Float.parseFloat(request.getParameter("myProductPrice"));
+
         Cart myCart;
         Product product = new Product(name, price);
+
+        //Check for existence of such cart session
         if (session.getAttribute("myCart") == null) {
             myCart = new Cart();
             myCart.addProduct(product);
@@ -26,6 +31,7 @@ public class CartServlet extends HttpServlet {
             myCart = (Cart) session.getAttribute("myCart");
             myCart.addProduct(product);
         }
+        //Setting lifetime of the cart
         session.setAttribute("myCart", myCart);
         session.setMaxInactiveInterval(60);
         response.sendRedirect("JSPages/main-page.jsp");

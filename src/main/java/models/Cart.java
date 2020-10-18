@@ -1,10 +1,7 @@
 package models;
 
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
-
+//Cart class that is included in session as a list of products client want to buy
 public class Cart extends Product implements Payable{
 
     private ArrayList<Product> productList;

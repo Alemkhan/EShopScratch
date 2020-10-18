@@ -17,9 +17,11 @@ public class LogoutServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //Logout with cookies unset
         Cookie[] myCookies = request.getCookies();
         CookieManager cc = new CookieManager();
         cc.deleteCookies(myCookies, response);
         response.sendRedirect("JSPages/index.jsp");
+
     }
 }

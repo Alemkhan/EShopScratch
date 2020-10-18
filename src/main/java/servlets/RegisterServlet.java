@@ -26,16 +26,24 @@ public class RegisterServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         File file = new File(ROOT_DIRECTORY);
+
         String fname = request.getParameter("fname");
         String lname = request.getParameter("lname");
         String login = request.getParameter("login");
         String password = request.getParameter("pass");
+
         PasswordValidator pv = new PasswordValidator();
+
         if (pv.validateRegisterForm(login, fname, lname, password).equals("success")) {
+
+            //Registration
             User myUser = new User(fname, lname, login, password);
             UserManager um = new UserManager(myUser);
             FileManager fm = new FileManager(file);
+
+            //Write in txt
             try {
                 int lines = um.countLines(file);
                 um.registerUser(file, lines);
@@ -46,7 +54,9 @@ public class RegisterServlet extends HttpServlet {
             } finally {
                 response.sendRedirect("JSPages/index.jsp");
             }
+
         }
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

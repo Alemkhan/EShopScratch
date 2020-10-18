@@ -4,6 +4,8 @@ import javax.servlet.http.HttpServletRequest;
 
 public class PasswordValidator {
 
+    //Instead of JS validation these methods were implemented
+
     public String validateLoginForm(String login, String password) {
         if (!login.equals("") && !password.equals("")) {
             return "success";

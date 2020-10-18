@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class CookieManager {
 
+    //Check of cookie existence
     public boolean isSet(Cookie[] cookies) {
         for (Cookie cook: cookies) {
             if (cook.getName().equals("Fname")){
@@ -14,6 +15,7 @@ public class CookieManager {
         return false;
     }
 
+    //Logout component
     public void deleteCookies(Cookie[] cookies, HttpServletResponse response) {
         for (Cookie cook: cookies) {
             if (cook.getName().equals("Fname") || cook.getName().equals("Lname")){
